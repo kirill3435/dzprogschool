@@ -44,7 +44,7 @@ namespace Shop.Controllers
                             ProductPrice = item.Product.Price,
                             Count = item.Count
                         }).ToList()
-                });
+                }).FirstOrDefault();
             
             return View(ordersViewModel);
         }

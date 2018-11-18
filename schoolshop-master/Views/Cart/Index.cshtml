@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OrderViewModel>
+﻿@model OrderViewModel
 
 @{
     var title = "Корзина";
@@ -32,8 +32,7 @@
 
 <div class="wrapper">
     <h2>@title</h2>
-    @foreach (var order in Model)
-    {
+    @{var order = Model;
         <div class="md-t-1">
             <h3>Номер заказа: @order.Number</h3>
             <h4>Статус заказа: <span id="order_status_@(order.Id)">@(order.Status == OrderStatus.NotPayed ? "Не оплаченный" : "Оплаченный")</span></h4>
@@ -48,7 +47,7 @@
                 </thead>
                 <tbody>
                     @foreach (var item in order.Items)
-                    {
+                    { 
                         <tr>
                             <td>@item.ProductName</td>
                             <td>@item.ProductPrice</td>
@@ -64,5 +63,5 @@
                 <button id="button_@(order.Id)" onclick="orderPayed(@(order.Id))" class="btn btn-success">Оплатить заказ</button>
             }
         </div>
-    }
+        }
 </div>

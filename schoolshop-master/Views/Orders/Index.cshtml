@@ -5,28 +5,7 @@
     ViewData["Title"] = title;
 }
 
-@section scripts {
-    <script>
-        function orderPayed(orderId) {
 
-            var xhr = new XMLHttpRequest();
-
-            xhr.open("GET", "orders/" + orderId + "/payed", true);
-
-            xhr.send();
-
-            xhr.onload = function () {
-                console.log(xhr.response);
-                if (JSON.parse(xhr.response)) {
-                    var $button = document.getElementById("button_" + orderId);
-                    $button.style.display = 'none';
-                    var $orderStatusLabel = document.getElementById("order_status_" + orderId);
-                    $orderStatusLabel.textContent = "Оплаченный";
-                }
-            };
-        }
-    </script>
-}
 <link href="~/css/styles.css" rel="stylesheet" type="text/css" />
     <div class="wrapper">
         <h2>@title</h2>
@@ -57,10 +36,6 @@
                         </tbody>
                     </table>
                 <h3>Стоимость заказа: @order.TotalSum</h3>
-                @if (order.Status == OrderStatus.NotPayed)
-                {
-                    <button id="button_@(order.Id)" onclick="orderPayed(@(order.Id))" class="btn btn-success">Оплатить заказ</button>
-                }
             </div>
         }
 </div>
